@@ -36,10 +36,11 @@ namespace PCL_CORE {
 		//pcl::PointCloud<pcl::PointXYZ>::Ptr cloud(new pcl::PointCloud<pcl::PointXYZ>);
 		pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_ptr(new pcl::PointCloud<pcl::PointXYZ>());
 
-		for (int r = 0; r < numRows * POINTXYZSIZE; ) {
-			float x = points[r++];
-			float y = points[r++];
-			float z = points[r++];
+		for (int r = 0; r < numRows; r++) {
+			int curIdx = r * PCL_CORE::POINTXYZSIZE;
+			float x = points[curIdx];
+			float y = points[curIdx+1];
+			float z = points[curIdx+2];
 			auto p = new pcl::PointXYZ(x,y,z);
 			cloud_ptr->push_back(*p);
 		}

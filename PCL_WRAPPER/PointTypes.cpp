@@ -26,4 +26,20 @@ namespace PCL_CLI {
 	void PointXYZ::Z::set(float value) {
 		Instance->z = value;
 	}
+
+	String^ PointXYZ::ToString() {
+		String^ output = String::Format("{0}, {1}, {2}", X, Y, Z);
+		return output;
+	}
+
+
+
+	//Normal Class
+
+	String^ Normal::ToString() {
+		String^ output = String::Format(
+			"{0}, {1}, {2}, {3}", 
+			Normal_X, Normal_Y, Normal_Z, Curvature);
+		return output;
+	}
 }

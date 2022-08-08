@@ -3,9 +3,9 @@
 
 namespace PCL_CLI {
 
-	PointCloudNormal^ Features::CalcNormals(PCL_CLI::PointCloudXYZ inputCloud, float searchRadius) {
+	PointCloudNormal^ Features::CalcNormals(PCL_CLI::PointCloudXYZ^ inputCloud, float searchRadius) {
 
-		const int numRows = inputCloud.Size;
+		const int numRows = inputCloud->Size;
 		array<float>^ pts = gcnew array<float>(numRows * PCL_CORE::POINTXYZSIZE);
 
 		for (int r = 0; r < numRows; r++) {
@@ -35,6 +35,8 @@ namespace PCL_CLI {
 				normals[curIdx+1], 
 				normals[curIdx+2], 
 				normals[curIdx+3]);
+			//Console::WriteLine(String::Format("normal: {0}", n->ToString()));
+			//all good to here.
 			cloud_out->Pushback(n);
 		}
 

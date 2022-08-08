@@ -19,27 +19,45 @@ namespace Sandbox {
 
 			var cloudXYZ = new PointCloudXYZ();
 
-			//var p = new PCL_CLI.PointXYZ();
-
 			for (int i = 0; i < strings.Length; i++) {
 				var coords = strings[i].Split(',');
 
-				Console.WriteLine(strings[i]);
+				//Console.WriteLine(strings[i]);
                 var p = new PointXYZ(
                     float.Parse(coords[0]),
                     float.Parse(coords[1]),
                     float.Parse(coords[2])
                     );
-
+				//Console.WriteLine(p.ToString());
                 cloudXYZ.Pushback(p);
             }
 
-			var  cloud = new PointCloudXYZ();
+			var f = new Features();
 
-			Console.WriteLine(cloud.ToString());
+			var normals = f.CalcNormals(cloudXYZ, 8f);
+
+			for (int i = 0; i < normals.Size; i++) {
+				var n = normals[i];
+				Console.WriteLine($"n1: {n.ToString()}");
+			}
+
+			string outPath = @"..\..\output\normalsOut00.csv";
+			string[] output = new string[normals.Size];
+			using (StreamWriter writer = new StreamWriter(outPath)) {
+				for (int i = 0; i < normals.Size; i++) {
+					var n = normals[i];
+					writer.WriteLine($"{n.Normal_X},{n.Normal_Y},{n.Normal_Z},{n.Curvature}");
+				}
+				Console.WriteLine("Writing To File Finished.");
+			}
+			
+
+
+			//
+			//Console.WriteLine(cloud.ToString());
 			//PCL_CLI.;
 
-			Console.ReadLine();
+			Console.ReadKey();
 
 		}
 	}

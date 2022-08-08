@@ -24,6 +24,8 @@ namespace PCL_CLI {
 			float get();
 			void set(float value);
 		};
+
+		String^ ToString() override;
 	};
 
 	public ref class Normal : ManagedObject<pcl::Normal> {
@@ -68,6 +70,8 @@ namespace PCL_CLI {
 				Instance->normal_z = value;
 			}
 		}
+
+		String^ ToString() override;
 	};
 
 }

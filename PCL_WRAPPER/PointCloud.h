@@ -23,6 +23,9 @@ namespace PCL_CLI {
 		PointCloudNormal() : ManagedObject(new pcl::PointCloud<pcl::Normal>) {}
 		//PointCloudNormal(pcl::PointCloud<pcl::Normal> input) : ManagedObject(&input) {}
 
+		property int Size {int get(); };
+		property Normal^ default[int]{ Normal^ get(int idx); }
+
 		void Pushback(PCL_CLI::Normal^ val) {
 			auto n = val->Instance;
 			Instance->push_back(*n);

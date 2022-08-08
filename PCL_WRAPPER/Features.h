@@ -10,7 +10,7 @@ namespace PCL_CLI {
 
 	public:
 		Features() : ManagedObject(new PCL_CORE::Features()) {}
-		PointCloudNormal^ CalcNormals(PointCloudXYZ inputCloud, float searchRadius);
+		PointCloudNormal^ CalcNormals(PointCloudXYZ^ inputCloud, float searchRadius);
 
 	};
 

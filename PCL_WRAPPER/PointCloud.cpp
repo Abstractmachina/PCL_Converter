@@ -13,4 +13,16 @@ namespace PCL_CLI {
 		return gcnew PointXYZ(x,y,z);
 	}
 
+
+	int PointCloudNormal::Size::get() {
+		return Instance->size();
+	}
+
+	Normal^ PointCloudNormal::default::get(int idx) {
+		float x = (*Instance)[idx].normal_x;
+		float y = (*Instance)[idx].normal_y;
+		float z = (*Instance)[idx].normal_z;
+		float c = (*Instance)[idx].curvature;
+		return gcnew Normal(x, y, z, c);
+	}
 }
