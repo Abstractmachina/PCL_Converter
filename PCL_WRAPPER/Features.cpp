@@ -1,9 +1,8 @@
 #include "Features.h"
-#include "PointCloud.h"
 
 namespace PCL_CLI {
 
-	PointCloudNormal^ Features::CalcNormals(PCL_CLI::PointCloudXYZ^ inputCloud, float searchRadius) {
+	PointCloudNormal^ Features::NormalEstimation(PCL_CLI::PointCloudXYZ^ inputCloud, float searchRadius) {
 
 		const int numRows = inputCloud->Size;
 		array<float>^ pts = gcnew array<float>(numRows * PCL_CORE::POINTXYZSIZE);
@@ -24,7 +23,7 @@ namespace PCL_CLI {
 		float* normals = new float[numRows * PCL_CORE::NORMALSIZE];
 
 		//int t = Instance->test(searchRadius);
-		normals = Instance->CalcNormals(nativeArray, numRows, searchRadius);
+		normals = PCL_CORE::Features::normal_estimation(nativeArray, numRows, searchRadius);
 
 		auto cloud_out = gcnew PointCloudNormal();
 

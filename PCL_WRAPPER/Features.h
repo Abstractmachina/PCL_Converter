@@ -10,17 +10,7 @@ namespace PCL_CLI {
 
 	public:
 		Features() : ManagedObject(new PCL_CORE::Features()) {}
-		PointCloudNormal^ CalcNormals(PointCloudXYZ^ inputCloud, float searchRadius);
+		static PointCloudNormal^ NormalEstimation(PointCloudXYZ^ inputCloud, float searchRadius);
 
 	};
-
-
-	/*PCL_CLI::PointCloudNormal^ CalcNormals(PCL_CLI::PointCloudXYZ^ inputCloud, float searchRadius) {
-
-		pcl::PointCloud<pcl::PointXYZ> cloud = *(inputCloud->Instance);
-
-		auto v = PCL_CORE::Features::CalcNormals(cloud, searchRadius);
-		return gcnew PointCloudNormal();
-	};*/
-
 }
